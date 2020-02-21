@@ -1,0 +1,9 @@
+
+<http://www.ncbi.nlm.nih.gov/nlmcatalog/<%=nlmid %>> a bibo:Journal;
+  dcterms:title <%=jt %> ;
+  fabio:hasNLMJournalTitleAbbreviation <%=medabbr %> ;
+  <% if !issn_p.empty? %>bibo:isbn <%=issn_p %> ; <% end %>
+  <% if !issn_o.empty? %>prism:eISSN <%=issn_o %> ; <% end %>
+  fabio:hasNationalLibraryOfMedicineJournalId <%=jid %> .
+
+
