@@ -1,15 +1,15 @@
-# rdf-journal
+# rdf-nlm-catalog
 
 ## Installation 
 
 ```bash
-$ docker build --tag rdf-journal .
+$ docker build --tag rdf-nlm-catalog .
 ```
 
 ## Run
 
 ```bash
-$ docker run --rm -v [WORK]:/work -v [DATA]:/data rdf-journal
+$ docker run --rm -v [WORK]:/work -v [DATA]:/data rdf-nlm-catalog
 ```
 [WORK]: Download file location
 
