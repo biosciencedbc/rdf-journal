@@ -35,7 +35,7 @@ File.open(fname){|file|
     elsif /NlmId/ === line then
       nlmid = /NlmId:/.match(line).post_match.delete("\n")
       
-      erb = ERB.new(IO.read("/pubmed_journal_converter.erb"),nil,"%")
+      erb = ERB.new(IO.read("/nlm_catalog_converter.erb"),nil,"%")
       File.open(output, 'a'){|f|
         f.puts erb.result(binding).gsub(/\n(\s| )*\n/, "\n")
       }

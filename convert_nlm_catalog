@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+cd /work
+wget -nc ftp://ftp.ncbi.nlm.nih.gov/pubmed/J_Entrez.txt 2> /dev/stdout
+
+chmod 777 /work/J_Entrez.txt
+
+cd /data
+
+test -e J_Entrez.txt.ttl && rm -rf J_Entrez.txt.ttl
+
+ruby /nlm_catalog_converter.rb /work/J_Entrez.txt  
+
+chmod 777 J_Entrez.txt.ttl
+
+

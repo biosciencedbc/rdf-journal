@@ -1,4 +1,12 @@
-
+<%
+def c(str)
+  if str.nil?
+    ""
+  else
+    str.lstrip
+  end
+end
+%>
 <http://www.ncbi.nlm.nih.gov/nlmcatalog/<%=nlmid %>> a bibo:Journal;
   dcterms:title <%=jt %> ;
   fabio:hasNLMJournalTitleAbbreviation <%=medabbr %> ;
