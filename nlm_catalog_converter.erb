@@ -7,11 +7,11 @@ def c(str)
   end
 end
 %>
-<http://www.ncbi.nlm.nih.gov/nlmcatalog/<%=nlmid %>> a bibo:Journal;
-  dcterms:title <%=jt %> ;
-  fabio:hasNLMJournalTitleAbbreviation <%=medabbr %> ;
-  <% if !issn_p.empty? %>bibo:isbn <%=issn_p %> ; <% end %>
-  <% if !issn_o.empty? %>prism:eISSN <%=issn_o %> ; <% end %>
-  fabio:hasNationalLibraryOfMedicineJournalId <%=jid %> .
+<http://www.ncbi.nlm.nih.gov/nlmcatalog/<%=c nlmid %>> a bibo:Journal;
+  dcterms:title "<%=c jt %>" ;
+  fabio:hasNLMJournalTitleAbbreviation "<%=c medabbr %>" ;
+  <% if !issn_p.empty? %>bibo:isbn "<%=c issn_p %>" ; <% end %>
+  <% if !issn_o.empty? %>prism:eISSN "<%=c issn_o %>" ; <% end %>
+  fabio:hasNationalLibraryOfMedicineJournalId "<%=c jid %>" .
 
 
