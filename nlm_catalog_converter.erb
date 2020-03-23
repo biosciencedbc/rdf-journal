@@ -3,10 +3,11 @@ def c(str)
   if str.nil?
     ""
   else
-    str.lstrip
+    str.lstrip.gsub("\"",'')
   end
 end
 %>
+
 <http://www.ncbi.nlm.nih.gov/nlmcatalog/<%=c nlmid %>> a bibo:Journal;
   dcterms:title "<%=c jt %>" ;
   fabio:hasNLMJournalTitleAbbreviation "<%=c medabbr %>" ;

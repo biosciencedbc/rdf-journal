@@ -10,7 +10,7 @@ jid, jt, medabbr, issn_p, issn_o, nlmid = "", "", "", "", "" , ""
 prefix = ["dcterms: <http://purl.org/dc/terms/>", "bibo: <http://purl.org/ontology/bibo/>", "prism: <http://prismstandard.org/namespaces/1.2/basic/>", "fabio: <http://purl.org/spar/fabio/>"]
 
 File.open(output, 'a'){|f|
-  prefix.each{ |p| f.puts("@prefix "+ p )}
+  prefix.each{ |p| f.puts("@prefix "+ p + " .")}
 }
 
 File.open(fname){|file|
