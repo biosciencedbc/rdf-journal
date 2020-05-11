@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 
 cd /work
-wget -nc ftp://ftp.ncbi.nlm.nih.gov/pubmed/J_Entrez.txt 2> /dev/stdout
 
+# ダウンロード(同名ファイルが存在する場合は上書きする)
+wget ftp://ftp.ncbi.nlm.nih.gov/pubmed/J_Entrez.txt -O J_Entrez.txt 2> /dev/stdout
+
+# 権限の変更
 chmod 777 /work/J_Entrez.txt
 
 cd /data
 
+# 変換後のファイルが存在する場合は削除する
 test -e J_Entrez.txt.ttl && rm -rf J_Entrez.txt.ttl
 
+# 変換の実行
 ruby /nlm_catalog_converter.rb /work/J_Entrez.txt  
 
+# 権限の変更
 chmod 777 J_Entrez.txt.ttl
 
 
