@@ -1,16 +1,41 @@
 #!/usr/bin/env bash
 
-cd /work
-wget -nc ftp://ftp.ncbi.nlm.nih.gov/pubmed/J_Entrez.txt 2> /dev/stdout
+FORCE_CONVERT=0
 
-chmod 777 /work/J_Entrez.txt
+while getopts f OPT
+do
+  case $OPT in
+    f)  FORCE_CONVERT=1
+        ;;
+  esac
+done
+shift  $(($OPTIND - 1))
+
+
+cd /work
+now=`date "+%Y%m%d-%H%M%S"`
+echo "Started wget at $now"
+wget -N https://ftp.ncbi.nlm.nih.gov/pubmed/J_Entrez.txt 2> /wget.log
+now=`date "+%Y%m%d-%H%M%S"`
+echo "Finished wget at $now"
+
+cat /wget.log
+num_of_newfiles=`egrep "' saved \[[0-9]+/[0-9]+\]" /wget.log | grep -v "'.listing' saved" | wc -l `
+chmod 666 /work/J_Entrez.txt
+
+if [ $num_of_newfiles -eq 0 ] && [ $FORCE_CONVERT -eq 0 ]; then
+  echo
+  echo "No RDF files were generated because no new files were found at the download site."
+  exit 0
+fi
 
 cd /data
 
+now=`date "+%Y%m%d-%H%M%S"`
+echo "Started convert at $now"
 test -e J_Entrez.txt.ttl && rm -rf J_Entrez.txt.ttl
-
-ruby /nlm_catalog_converter.rb /work/J_Entrez.txt  
-
-chmod 777 J_Entrez.txt.ttl
-
+ruby /nlm_catalog_converter.rb /work/J_Entrez.txt
+chmod 666 J_Entrez.txt.ttl
+now=`date "+%Y%m%d-%H%M%S"`
+echo "Finished convert at $now"
 

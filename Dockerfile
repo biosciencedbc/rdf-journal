@@ -6,6 +6,6 @@ RUN mkdir /data && mkdir /work
 
 ADD ./ /
 
-CMD bash convert_nlm_catalog
+ENTRYPOINT [ "/convert_nlm_catalog" ]
 
 
