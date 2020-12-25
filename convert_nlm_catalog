@@ -20,7 +20,7 @@ echo "Finished wget at $now"
 
 cat /wget.log
 num_of_newfiles=`egrep " saved \[[0-9]+/[0-9]+\]" /wget.log | grep -v "'.listing' saved" | wc -l `
-chmod 666 /work/J_Entrez.txt
+chmod 777 /work/J_Entrez.txt
 
 if [ $num_of_newfiles -eq 0 ] && [ $FORCE_CONVERT -eq 0 ]; then
   echo
@@ -34,7 +34,7 @@ now=`date "+%Y%m%d-%H%M%S"`
 echo "Started convert at $now"
 test -e J_Entrez.txt.ttl && rm -rf J_Entrez.txt.ttl
 ruby /nlm_catalog_converter.rb /work/J_Entrez.txt
-chmod 666 J_Entrez.txt.ttl
+chmod 777 J_Entrez.txt.ttl
 now=`date "+%Y%m%d-%H%M%S"`
 echo "Finished convert at $now"
 
